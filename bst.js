@@ -73,5 +73,34 @@ class BinarySearchTree {
     else {
       throw new Error('Key Error');
     }
+    /* Finding in BST with balanced tree would be O(log(n))
+    If skewed, worst case would be 0(n). If root O(1) */
+  }
+  remove(key) {
+    if (this.key === key) {
+      if (this.left && this.right) {
+        const successor = this.right._findMin();
+        this.key = successor.key;
+        this.value = successor.value;
+        successor.remove(successor.key);
+      } else if (this.left) {
+        /* If the node only has a left child, then you replace the node with its left child*/
+        this._replaceWith(this.left);
+      } else if (this.right) {
+        /* Similarly, if the node only has a right, then you replace with its right child*/
+        this._replaceWith(this.right);
+        /* If the node has no children then simply remove it and any references to it
+        by calling "this._replaceWith(null)" */
+      } else {
+        this._replaceWith(null);
+      }
+    } else if (key < this.key && this.left) {
+      this.left.remove(key);
+    } else if (key > this.key && this.right) {
+      this.right.remote(key);
+    } else {
+      throw new Error('Key Error');
+    }
   }
 }
+git a
