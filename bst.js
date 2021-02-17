@@ -6,7 +6,6 @@
 // - insert
 // - remove
 // - delete
-
 class BinarySearchTree {
   constructor(key = null, value = null, parent = null) {
     this.key = key;
@@ -18,8 +17,7 @@ class BinarySearchTree {
 
   insert(key, value) {
     // if the tree is empty, then this key being inserted is the root of the tree
-    // eslint-disable-next-line no-constant-condition
-    if ((this.key = null)) {
+    if (this.key === null) {
       this.key = key;
       this.value = value;
     }
@@ -102,5 +100,32 @@ class BinarySearchTree {
       throw new Error('Key Error');
     }
   }
+  _findMin() {
+    if (!this.left) {
+      return this;
+    }
+    return this.left._findMin();
+  }
+  _findMax() {
+    if (!this.right) {
+      return this;
+    }
+    return this.right._findMax();
+  }
 }
-git a
+
+const BST = new BinarySearchTree();
+function createBST(key) {
+  key.map((item) => {
+    BST.insert(item, item);
+  });
+}
+
+console.dir(createBST([3, 1, 4, 6, 9, 2, 5, 7]), { depth: null });
+
+// // 1 2 3 4 5 6 7 9
+//          4
+//       2       7
+//     1   3   6   9
+
+//
