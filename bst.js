@@ -124,7 +124,7 @@ function createBST(key) {
 console.dir(createBST([3, 1, 4, 6, 9, 2, 5, 7]), { depth: null });
 
 // // 1 2 3 4 5 6 7 9
-//          4
+//          4 4  5
 //       2       7
 //     1   3   6   9
 
